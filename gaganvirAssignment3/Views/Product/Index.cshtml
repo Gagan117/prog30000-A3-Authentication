@@ -8,7 +8,7 @@
 
 <h1>Products List</h1>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>ID</th>
@@ -34,10 +34,10 @@
                 <td>@(product.Supports5G ? "Yes":"No")</td>
                 <td>@product.CreatedAt.ToShortDateString()</td>
                 <td>
-                    <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-sm btn-primary"></a>
+                    <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-sm btn-primary">Edit</a>
                 </td>
                 <td>
-                    <a asp-controller="Products" asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-sm btn-danger"></a>
+                    <a asp-controller="Products" asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         }

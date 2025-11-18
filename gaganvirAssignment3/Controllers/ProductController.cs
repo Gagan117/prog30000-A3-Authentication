@@ -1,4 +1,5 @@
 ﻿using gaganvirAssignment3.Data;
+using gaganvirAssignment3.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,18 @@ namespace gaganvirAssignment3.Controllers
         {
             var products = _context.Products.ToList();
             return View(products);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Product product)
+        {
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
         public IActionResult Edit()
         {

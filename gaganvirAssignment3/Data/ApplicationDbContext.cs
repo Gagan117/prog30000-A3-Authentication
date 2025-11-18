@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using gaganvirAssignment3.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace gaganvirAssignment3.Data
@@ -9,5 +10,7 @@ namespace gaganvirAssignment3.Data
             : base(options)
         {
         }
+        // add products table
+        public DbSet<Product> Products { get; set; }
     }
 }

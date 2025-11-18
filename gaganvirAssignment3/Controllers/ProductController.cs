@@ -30,14 +30,27 @@ namespace gaganvirAssignment3.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        public IActionResult Edit()
+        [HttpGet]
+        public IActionResult Edit(int id)
         {
-            return View();
+            var product = _context.Products.Find(id);
+            return View(product);
         }
 
-        public IActionResult Delete()
+        [HttpPost]
+        public IActionResult Edit(Product product)
         {
-            return View();
+            _context.Products.Update(product);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var product = _context.Products.Find(id);
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return RedirectToAction("Index");   
         }
     }
 }

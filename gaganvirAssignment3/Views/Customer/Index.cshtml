@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<gaganvirAssignment3.Models.Product>
+
+<h1>Products List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Support 5G</th>
+            <th>Created at</th>
+            <th>Details</th>
+            <th>Add to cart</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Category</td>
+                <td>@product.Price.ToString("C")</td>
+                <td>@(product.Supports5G ? "Yes" : "No")</td>
+                <td>@product.CreatedAt.ToShortDateString()</td>
+                <td><a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary">View Details</a></td>
+                <td><a asp-action="AddToCart" asp-route-id="@product.ProductId" class="btn btn-primary">Add To Cart</a></td>
+            </tr>
+        }
+</table>
+
+<a asp-controller="Customer" asp-action="Cart" class="btn btn-primary">View Cart</a>

@@ -1,4 +1,5 @@
 ﻿using gaganvirAssignment3.Data;
+using gaganvirAssignment3.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,5 +56,53 @@ namespace gaganvirAssignment3.Controllers
             }
             return RedirectToAction("Cart");
         }
+
+        public IActionResult Checkout()
+        {
+            var cartItems = Models.Cart.Products;
+            decimal totalAmount = cartItems.Sum(p => p.Price);
+            decimal tax = totalAmount * 0.13m;
+            decimal finalAmount = totalAmount + tax;
+
+            ViewBag.TotalAmount = totalAmount;
+            ViewBag.Tax = tax;
+            ViewBag.FinalAmount = finalAmount;
+
+            return View(cartItems);
+        }
+
+        [HttpPost]
+        public IActionResult PlaceOrder()
+        {
+            var cartItems = Models.Cart.Products;
+            if (cartItems.Count == 0)
+            {
+                return RedirectToAction("Cart");
+            }
+            decimal totalAmount = cartItems.Sum(p => p.Price);
+            decimal tax = totalAmount * 0.13m;
+            decimal finalAmount = totalAmount + tax;
+
+            var newOrder = new Order
+            {
+                OrderId = OrderData.Orders.Count + 1,
+                Products = cartItems.ToList(),
+                SubTotal = totalAmount,
+                Tax = tax,
+                TotalAmount = finalAmount,
+                OrderDate = DateTime.Now
+            };
+
+            OrderData.Orders.Add(newOrder);
+            Models.Cart.Products.Clear();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult OrderHistory()
+        {
+            var orders = OrderData.Orders;
+            return View(orders);
+        }
+
     }
 }

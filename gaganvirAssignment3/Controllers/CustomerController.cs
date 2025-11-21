@@ -2,6 +2,7 @@
 using gaganvirAssignment3.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace gaganvirAssignment3.Controllers
 {
@@ -14,10 +15,24 @@ namespace gaganvirAssignment3.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string sortPrice)
         {
+            //https://stackoverflow.com/questions/17366907/what-is-the-purpose-of-asqueryable
+            //https://stackoverflow.com/questions/1106802/why-use-asqueryable-instead-of-list
             var products = _context.Products.ToList();
-            return View(products);
+
+            //https://stackoverflow.com/questions/11912822/how-to-sort-a-list-of-class-in-c
+            //https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/sort-filter-page?view=aspnetcore-9.0
+            if (sortPrice == "desc")
+            {
+                products = products.OrderByDescending(p => p.Price).ToList();
+            }
+            else
+            {
+                products = products.OrderBy(p => p.Price).ToList();
+            }
+
+             return View(products);
         }
 
         public IActionResult Details(int id)

@@ -8,6 +8,12 @@
 
 <h1>Products List</h1>
 
+<!-- https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/sort-filter-page?view=aspnetcore-9.0 -->
+<div>
+    <a asp-action="Index" asp-route-sortPrice="asc" class="btn btn-primary">Asc</a>
+    <a asp-action="Index" asp-route-sortPrice="desc" class="btn btn-primary">Desc</a>
+</div>
+
 <table class="table">
     <thead>
         <tr>

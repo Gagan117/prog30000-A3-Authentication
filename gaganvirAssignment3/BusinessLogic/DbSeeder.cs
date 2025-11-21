@@ -32,8 +32,7 @@ namespace gaganvirAssignment3.BusinessLogic
 
         private static async Task CreateAdmin(UserManager<IdentityUser> userManager)
         {
-            // Seed an admin user (adjust email/password!)
-            var adminEmail = "admin@example.com";
+            var adminEmail = "admin@store.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
             if (adminUser == null)
             {
@@ -54,8 +53,7 @@ namespace gaganvirAssignment3.BusinessLogic
 
         private static async Task CreateCustomer(UserManager<IdentityUser> userManager)
         {
-            // Seed a customer user (adjust email/password!)
-            var customerEmail = "customer@example.com";
+            var customerEmail = "customer@store.com";
             var customerUser = await userManager.FindByEmailAsync(customerEmail);
             if (customerUser == null)
             {

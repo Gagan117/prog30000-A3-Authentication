@@ -15,11 +15,16 @@ namespace gaganvirAssignment3.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(string sortPrice)
+        public IActionResult Index(string sortPrice, Category category)
         {
             //https://stackoverflow.com/questions/17366907/what-is-the-purpose-of-asqueryable
             //https://stackoverflow.com/questions/1106802/why-use-asqueryable-instead-of-list
             var products = _context.Products.ToList();
+
+            if (Enum.IsDefined(typeof(Category), category) && category != 0)
+            {
+                products = products.Where(p => p.Category == category).ToList();
+            }
 
             //https://stackoverflow.com/questions/11912822/how-to-sort-a-list-of-class-in-c
             //https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/sort-filter-page?view=aspnetcore-9.0

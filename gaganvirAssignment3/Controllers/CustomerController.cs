@@ -75,10 +75,12 @@ namespace gaganvirAssignment3.Controllers
         public IActionResult PlaceOrder()
         {
             var cartItems = Models.Cart.Products;
+
             if (cartItems.Count == 0)
             {
                 return RedirectToAction("Cart");
             }
+
             decimal totalAmount = cartItems.Sum(p => p.Price);
             decimal tax = totalAmount * 0.13m;
             decimal finalAmount = totalAmount + tax;

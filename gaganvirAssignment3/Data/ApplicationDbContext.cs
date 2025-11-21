@@ -12,5 +12,6 @@ namespace gaganvirAssignment3.Data
         }
         // add products table
         public DbSet<Product> Products { get; set; }
+
     }
 }

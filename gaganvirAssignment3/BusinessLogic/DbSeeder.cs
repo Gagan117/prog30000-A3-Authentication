@@ -43,7 +43,7 @@ namespace gaganvirAssignment3.BusinessLogic
                     Email = adminEmail,
                     EmailConfirmed = true
                 };
-                var result = await userManager.CreateAsync(adminUser, "Admin#12345"); // use strong secrets!
+                var result = await userManager.CreateAsync(adminUser, "Admin#12345");
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(adminUser, "Admin");
@@ -65,7 +65,7 @@ namespace gaganvirAssignment3.BusinessLogic
                     Email = customerEmail,
                     EmailConfirmed = true
                 };
-                var result = await userManager.CreateAsync(customerUser, "Customer#12345"); // use strong secrets!
+                var result = await userManager.CreateAsync(customerUser, "Customer#12345");
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(customerUser, "Customer");

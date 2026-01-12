@@ -8,7 +8,6 @@ namespace gaganvirAssignment3.BusinessLogic
 {
     public class DbSeeder
     {
-        // add roles (Admin , Customer) and default admin user
         public static async Task SeedAsync(IServiceProvider services)
         {
             var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
